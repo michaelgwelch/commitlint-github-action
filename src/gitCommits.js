@@ -1,5 +1,6 @@
 import dargs from 'dargs'
 import execa from 'execa'
+import _ from 'lodash'
 
 const commitDelimiter = '--------->commit---------'
 
@@ -23,6 +24,9 @@ const buildGitArgs = (gitOpts) => {
 
 const gitCommits = async (gitOpts) => {
   const args = buildGitArgs(gitOpts)
+
+
+  console.log(`git ${_.join(args, ',')}`);
 
   const { stdout } = await execa('git', args, {
     cwd: process.cwd(),
